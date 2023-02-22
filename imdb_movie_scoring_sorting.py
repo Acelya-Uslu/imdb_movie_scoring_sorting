@@ -42,6 +42,8 @@ df["vote_count_score"] = MinMaxScaler(feature_range=(1, 10)). \
 df["average_count_score"] = df["vote_average"] * df["vote_count_score"]
 df.sort_values("average_count_score", ascending=False).head(10)
 
+
+
 # IMDB Weighted Rating
 # weighted_rating = (v/(v+M) * r) + (M/(v+M) * C)
 
@@ -60,7 +62,6 @@ def weighted_rating(r, v, M, C):
 
 
 df.sort_values("average_count_score", ascending=False).head(10)
-
 weighted_rating(8.50000, 8000.0000, M, C)
 
 df["weighted_rating"] = weighted_rating(df["vote_average"],
@@ -69,9 +70,11 @@ df["weighted_rating"] = weighted_rating(df["vote_average"],
 df.sort_values("weighted_rating", ascending=False).head(10)
 
 
+
+
+
 # Bayesian Average Rating Score ( Bayes Derecelendirme Puanı)
 # Bar yöntemi Ratinglerin olasılıksal ağırlıklı ortalamasına göre sıralama yapar.
-
 
 def bayesian_average_rating(n, confidence=0.95):
     if sum(n) == 0:
